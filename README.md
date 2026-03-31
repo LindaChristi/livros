@@ -47,3 +47,36 @@ Cada livro armazena as seguintes informações:
 ---
 
 ## 🧩 Estrutura do Projeto
+
+sgta/
+├── backend/ # Django app e configuração
+│ ├── config/ # Configurações do Django
+│ └── livros/ # App de livros (models, views, urls, admin)
+├── docker/ # Dockerfile
+├── postgres/ # Volume do PostgreSQL
+├── docker-compose.yml # Orquestração de containers
+├── requirements.txt # Dependências Python
+└── README.md # Documentação do projeto
+
+## 📦 Como Rodar o Projeto
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/LindaChristi/livros.git
+   cd sgta
+
+2. Suba os containers com Docker Compose:
+
+   docker compose up --build
+
+3. Abra outro terminal para realizar as migrations:
+
+  docker exec -it sgta-web-1 bash
+  python manage.py makemigrations
+  python manage.py migrate
+  python manage.py createsuperuser
+  
+4. Acesse:
+Admin Django: http://localhost:8000/admin
+API - todos os livros: http://localhost:8000/api/livros/
+API - livros lidos: http://localhost:8000/api/lidos/
